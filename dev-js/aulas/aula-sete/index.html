@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Array via push.</h3>
+<div id="array-push"></div>
+<br>
+<h3>Array via pop</h3>
+<div id="array-pop"></div>
+<br>
+<h3>Array via unshift</h3>
+<div id="array-unshift"></div>
+<br>
+<h3>Array via shift</h3>
+<div id="array-shift"></div>
+
+
+<script>
+    let frutas = ["Maçã", "Laranja", "Abacaxi", "Morango", "Uva"]
+
+    //fazendo push no array
+    const arrayPush = document.getElementById("array-push")
+    const frutaPush = prompt("Digite uma fruta para adicionar no fim da lista:")
+    frutas.push(frutaPush)
+    frutas.forEach((fruta, i) =>
+        arrayPush.innerHTML += `
+  <ul><li>${i + 1}° Fruta: ${fruta};</li></ul>
+  `
+    )
+
+    //fazendo pop no array
+    const arrayPop = document.getElementById("array-pop")
+    alert(`Você não tem opção, a fruta ${frutas[frutas.length - 1]} será removida da lista.`)
+    frutas.pop()
+    frutas.forEach((fruta, i) => arrayPop.innerHTML += `
+    <ul>
+    <li>${i + 1}° Fruta: ${fruta};</li>
+</ul>
+    `
+    )
+
+    //fazendo unshift do array
+    const arrayUnshift = document.getElementById("array-unshift")
+    const frutasUnshift = prompt("Digite uma fruta para adicionar no começo da lista:")
+    frutas.unshift(frutasUnshift)
+    frutas.forEach((fruta, i) => arrayUnshift.innerHTML += `
+    <ul>
+    <li>${i + 1}° Fruta: ${fruta};</li>
+</ul>
+    `)
+
+
+    //fazendo shift no array
+    const  arrayShift = document.getElementById("array-shift")
+    alert(`Você não tem opção, a fruta ${frutas[0]} será removida da lista.`)
+    frutas.shift()
+    frutas.forEach((fruta, i) => arrayShift.innerHTML += `
+    <ul>
+    <li>${i + 1}° Fruta: ${fruta};</li>
+</ul>
+    `)
+</script>
+</body>
+</html>
