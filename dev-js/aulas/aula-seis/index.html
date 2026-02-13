@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 05</title>
+</head>
+<body>
+<h1>Funções em JavaScript</h1>
+
+<div id="js-content">
+
+</div>
+<script>
+    let nomeprompt = prompt("Digite seu nome:")
+    let idadeprompt = prompt("Digite sua idade:")
+
+    function mensagem(nome, idade) {
+        const jsElements = document.getElementById("js-content")
+
+        jsElements.innerHTML = `
+        <h2>Seja Bem-Vindo!</h2>
+        <p>Obrigado por entrar no sistema ${nome}.</p>
+        <p>Agora sabemos que você tem ${idade} anos.</p>
+    `
+    }
+
+    mensagem(nomeprompt, idadeprompt)
+
+    let num1 = Number(prompt("Digite um número:"))
+
+    const par = (a) => a % 2 === 0
+    const resultado = document.getElementById("js-content")
+
+    if (par(num1)) {
+        resultado.innerHTML = `
+    <p>O número digitado é par</p>
+    `
+    } else {
+        resultado.innerHTML = `
+    <p>O número digitado é impar</p>`
+    }
+</script>
+</body>
+</html>
+
