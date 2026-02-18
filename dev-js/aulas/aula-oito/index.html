@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="return-car"></div>
+</body>
+<script>
+    let carro = {
+        marca: "Ford",
+        modelo: "EcoSport",
+        ano: 2016,
+        ligado: false,
+        ligar() {
+            this.ligado = true
+        }
+    }
+
+    let info = prompt("Bem-Vindo ao seu carro. Digite 1 para ligar. Digite qualquer coisa para não ligar.")
+    console.log(typeof info)
+    if (info == "1") {
+        carro.ligar();
+    }
+    const returnCar = document.getElementById("return-car")
+
+    if (carro.ligado == true) {
+        returnCar.innerHTML = `
+        <h1>O carro está ligado. Boa viagem!</h1>
+        `
+    } else {
+        returnCar.innerHTML = `
+        <h1>O carro está desligado. Recarregue pra ligar o carro.</h1>
+`
+    }
+</script>
+</html>
