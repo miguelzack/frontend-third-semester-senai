@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 09</title>
+    <style>
+        .new-color {
+            background-color: #fad3d3;
+        }
+    </style>
+</head>
+<body id="all-page">
+<button id="change-color">Aperte aqui para mudar a cor de fundo da página</button>
+
+<p>Digite um item no input para adicionar itens na lista</p>
+<ul id="list">
+    <li>Item Sla, Vai Pikachu</li>
+</ul>
+<input type="text" id="input-list" placeholder="Digite um item para a lista.">
+<button id="button-list" type="submit">Aperte para adicionar o item na lista.</button>
+<button id="button-remove-list">Aperte para remover o item da lista</button>
+<p id="text-hover">Texto vai mudar quando passar o mouse.</p>
+<script>
+    //botão para mudar background-color da pagina
+    const allPage = document.getElementById("all-page")
+    const buttonChangeColor = document.getElementById("change-color")
+
+    buttonChangeColor.addEventListener("click", () => {
+        if (allPage.className === "new-color") {
+            allPage.className = ""
+        } else {
+            allPage.className = "new-color"
+        }
+    })
+
+    //lista
+    const list = document.getElementById("list")
+    const inputList = document.getElementById("input-list")
+    const buttonList = document.getElementById("button-list")
+
+    buttonList.addEventListener("click", () => {
+        const inputValue = inputList.value.trim()
+
+        if (inputValue == "") {
+            alert("Caixa vazia. Tente novamente.")
+            inputList.value = ""
+            return
+        }
+
+        const lista = document.createElement("li")
+        lista.textContent = inputValue;
+        list.appendChild(lista)
+        inputList.value = ""
+    })
+
+    //botão para remover o ultimo item da lista
+    const buttonRemoveItem = document.getElementById("button-remove-list")
+
+    buttonRemoveItem.addEventListener("click", () => {
+        if (list.lastElementChild) {
+            list.removeChild(list.lastElementChild)
+        } else {
+            alert("Não há itens para remover.")
+        }
+    })
+
+    //texto mudar com hover
+    const textHover = document.getElementById("text-hover")
+
+    textHover.addEventListener("mouseenter", () => {
+        textHover.textContent = "O mouse tá em cima."
+    })
+
+    textHover.addEventListener("mouseleave", () => {
+        textHover.textContent = "Texto vai mudar quando passar o mouse."
+    })
+</script>
+</body>
+</html>
