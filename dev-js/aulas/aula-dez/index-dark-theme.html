@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 09</title>
+    <style>
+        .new-color {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body id="all-page">
+<button id="change-color">Trocar tema</button>
+
+<script>
+    //botão para mudar background-color da pagina
+    const allPage = document.getElementById("all-page")
+    const buttonChangeColor = document.getElementById("change-color")
+
+    buttonChangeColor.addEventListener("click", () => {
+        if (allPage.className === "new-color") {
+            allPage.className = ""
+        } else {
+            allPage.className = "new-color"
+        }
+    })
+</script>
+</body>
+</html>
