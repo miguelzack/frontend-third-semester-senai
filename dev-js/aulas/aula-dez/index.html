@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 09</title>
+</head>
+<body>
+<h1>Formulário de registros</h1>
+<form id="form-register" method="post">
+    <fieldset class="input-form">
+        <label>Nome</label>
+        <input type="text" placeholder="Digite aqui seu nome" id="input-name">
+    </fieldset>
+    <fieldset class="input-form">
+        <label>Idade</label>
+        <input type="number" placeholder="Digite aqui sua idade" id="input-age">
+    </fieldset>
+    <fieldset class="input-form">
+        <label>Email</label>
+        <input type="email" placeholder="Digite aqui seu email" id="input-email">
+    </fieldset>
+    <button type="submit" id="button-submit">Enviar!</button>
+</form>
+
+<h2>Dados cadastrados:</h2>
+<div id="data"></div>
+<script>
+    const form = document.getElementById("form-register")
+    const inputName = document.getElementById("input-name")
+    const inputAge = document.getElementById("input-age")
+    const inputEmail = document.getElementById("input-email")
+    const buttonSubmit = document.getElementById("button-submit")
+    const divData = document.getElementById("data")
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const inputNameValue = inputName.value.trim()
+        const inputAgeValue = inputAge.value.trim()
+        const inputEmailValue = inputEmail.value.trim()
+
+        if (inputNameValue === "" || inputAgeValue === "" || inputEmailValue === "") {
+            alert("Caixa de inserção vazia. Tente novamente!")
+            return
+        }
+
+        let list = document.createElement("ul")
+        let elementName = document.createElement("li")
+        let elementAge = document.createElement("li")
+        let elementEmail = document.createElement("li")
+
+        elementName.textContent = inputNameValue
+        list.appendChild(elementName)
+
+        elementAge.textContent = inputAgeValue
+        list.appendChild(elementAge)
+
+        elementEmail.textContent = inputEmailValue
+        list.appendChild(elementEmail)
+
+        divData.appendChild(list)
+
+        form.reset()
+    })
+</script>
+</body>
+</html>
+
