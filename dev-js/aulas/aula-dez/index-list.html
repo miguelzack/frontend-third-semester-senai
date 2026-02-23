@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<label for="input-list">Digite o item da lista de compras:</label>
+<input type="text" id="input-list" placeholder="Digite um item para a lista.">
+<button id="button-list" type="submit">Adicionar.</button>
+<p id="total-itens">Total de itens: 0</p>
+<ul id="list">
+</ul>
+</body>
+<script>
+
+    const list = document.getElementById("list")
+    const inputList = document.getElementById("input-list")
+    const buttonList = document.getElementById("button-list")
+
+    buttonList.addEventListener("click", () => {
+        const inputValue = inputList.value.trim()
+
+        if (inputValue === "") {
+            alert("Caixa vazia. Tente novamente.")
+            inputList.value = ""
+            return
+        }
+
+        const lista = document.createElement("li")
+        const button = document.createElement("button")
+        button.textContent = "X"
+        button.addEventListener("click", () => {
+            list.removeChild(lista)
+            atualizarTotal()
+        })
+
+        lista.textContent = inputValue;
+        lista.appendChild(button)
+        list.appendChild(lista)
+        inputList.value = ""
+
+
+        atualizarTotal()
+    })
+
+        const totalItens = document.getElementById("total-itens")
+
+        function atualizarTotal() {
+            const quantidade = list.children.length
+            totalItens.textContent = `Total de itens: ${quantidade}`
+        }
+</script>
+</html>
