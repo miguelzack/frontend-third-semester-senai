@@ -1,0 +1,10 @@
+.btn {
+    background-color: #708ded;
+    padding: 10px;
+    color: white;
+    border: 2px solid black;
+}
+
+.destaque {
+    border: 2px solid yellow;
+}
