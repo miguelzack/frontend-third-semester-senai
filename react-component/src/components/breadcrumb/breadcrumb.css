@@ -1,0 +1,39 @@
+nav {
+    width: 100%;
+    font-family: "DejaVu Sans";
+}
+
+nav ol {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+nav ol li {
+    display: flex;
+    align-items: center;
+}
+
+nav ol li::after {
+    content: "›";
+    margin: 0 8px;
+    color: #888;
+    display: inline-flex;
+    align-items: center;
+}
+
+nav ol li:last-child::after {
+    content: "";
+}
+
+nav ol li a{
+    display: inline;
+    color: blue;
+    text-decoration: none;
+}
+
+nav ol li a:hover{
+    color: #604574;
+    text-decoration: underline;
+}
