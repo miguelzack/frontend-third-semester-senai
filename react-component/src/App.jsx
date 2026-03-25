@@ -1,5 +1,6 @@
 import Breadcrumb from "./components/breadcrumb/breadcrumb";
 import Modal from "./components/modal/modal";
+import DatePicker from "./components/date-picker/datePicker";
 
 function App() {
     return (<>
@@ -9,7 +10,7 @@ function App() {
         <p>Componente com modules:</p>
         <Modal/>
         <p>Componente com styled-components:</p>
-
+        <DatePicker/>
     </>);
 }
 
