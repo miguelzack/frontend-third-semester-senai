@@ -1,4 +1,5 @@
 import Breadcrumb from "./components/breadcrumb/breadcrumb";
+import Modal from "./components/modal/modal";
 
 function App() {
     return (<>
@@ -6,7 +7,7 @@ function App() {
         <p>Componente com CSS puro:</p>
         <Breadcrumb/>
         <p>Componente com modules:</p>
-
+        <Modal/>
         <p>Componente com styled-components:</p>
 
     </>);
