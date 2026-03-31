@@ -37,3 +37,14 @@ nav ol li a:hover{
     color: #604574;
     text-decoration: underline;
 }
+
+nav ol li a.active {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav ol li.active {
+    color: black;
+    font-weight: bold;
+}
