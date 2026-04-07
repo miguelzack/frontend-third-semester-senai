@@ -1,0 +1,47 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 88px 0;
+    background-color: var(--color-black);
+
+    .content-main {
+        display: flex;
+        gap: 192px;
+        align-items: center;
+        justify-content: center;
+        width: 61.60%;
+
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            color: var(--color-white);
+            line-height: 130.62%;
+
+            h1 {
+                font-size: 40px;
+                font-weight: 700;
+                color: #FFF;
+                font-style: normal;
+
+                span {
+                    color: var(--color-primary);
+                }
+            }
+
+            p {
+                font-size: 20px;
+                font-weight: 400;
+            }
+
+            .button-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+            }
+        }
+    }
+}
+
