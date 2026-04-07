@@ -1,0 +1,15 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primary: #11B0C8;
+    --color-black: #000000;
+    --color-l-black: #1a1a1a;
+    --color-g-black: #0f0f0f;
+    --color-white: #ffffff;
+}
+
