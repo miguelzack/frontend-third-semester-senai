@@ -30,7 +30,7 @@ export const Card = () => {
         <div className="wrapper-cards">
             {Perso.map(personagem => (<div className="card-perso" key={personagem.id}>
                 <img src={personagem.image} alt=""/>
-                <h1>{personagem.name}</h1>
+                <h6>{personagem.name}</h6>
                 <p>{personagem.species}</p>
                 <p>{personagem.status}</p>
                 <p>{personagem.origin.name}</p>
