@@ -6,9 +6,7 @@ export const CharacterSection = () => {
         <section>
             <div className="content-section">
                 <h1>Nossos <span>Personagens</span></h1>
-                <div className="cards-wrapper">
                     <Card/>
-                </div>
             </div>
         </section>
     )

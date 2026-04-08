@@ -1,5 +1,9 @@
 import axios from 'axios'
 import {useEffect, useState} from "react";
+import "./style.css"
+import AlienIco from "../../assets/icons/alienIco.jsx";
+import LiveIco from "../../assets/icons/liveIco.jsx";
+import PlanetIco from "../../assets/icons/planetIco.jsx";
 
 export const Card = () => {
     const [Perso, setPerso] = useState([])
@@ -28,12 +32,21 @@ export const Card = () => {
         // </div>
 
         <div className="wrapper-cards">
-            {Perso.map(personagem => (<div className="card-perso" key={personagem.id}>
+            {Perso.map(personagem => (<div className="card-character" key={personagem.id}>
                 <img src={personagem.image} alt=""/>
                 <h6>{personagem.name}</h6>
-                <p>{personagem.species}</p>
-                <p>{personagem.status}</p>
-                <p>{personagem.origin.name}</p>
+                <div className="text-wrapper">
+                    <AlienIco/>
+                    <p>{personagem.species}</p>
+                </div>
+                <div className="text-wrapper">
+                    <LiveIco/>
+                    <p>{personagem.status}</p>
+                </div>
+                <div className="text-wrapper">
+                    <PlanetIco/>
+                    <p>{personagem.origin.name}</p>
+                </div>
             </div>))}
         </div>)
 }
