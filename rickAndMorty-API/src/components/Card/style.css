@@ -18,11 +18,14 @@
         max-width: 256px;
         min-height: 481px;
         color: var(--color-white);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         img {
             height: 216px;
             border-radius: 50px;
+            transition: border 0.1s ease;
         }
+
 
         h6 {
             text-align: center;
@@ -49,5 +52,14 @@
             }
         }
 
+    }
+
+    .card-character:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 10px 30px var(--color-primary);
+
+        img {
+            border: 4px solid var(--color-primary);
+        }
     }
 }
