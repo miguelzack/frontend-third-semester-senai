@@ -2,12 +2,26 @@ import axios from 'axios'
 import './style.css'
 import {useEffect, useState} from "react";
 
-export const Card = () => {
+export const Card = ({search, typeFilter, generationFilter}) => {
 
     const [poke, setPoke] = useState([]);
     const [dataPoke, setDataPoke] = useState([]);
+    const [searchResult, setSearchResult] = useState(null);
     const [offset, setOffset] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [generationIds, setGenerationIds] = useState([]);
+
+    let pokemonsToShow = search ? (searchResult ? [searchResult] : []) : dataPoke;
+
+
+    if (typeFilter) {
+        pokemonsToShow = pokemonsToShow.filter(pokemon => pokemon.types.some(t => t.type.name === typeFilter));
+    }
+
+
+    if (generationFilter && generationIds.length > 0) {
+        pokemonsToShow = pokemonsToShow.filter(pokemon => generationIds.includes(pokemon.id));
+    }
 
     useEffect(() => {
         const fetchList = async () => {
@@ -25,19 +39,25 @@ export const Card = () => {
             }
         };
 
-        fetchList();
-    }, [offset]);
+
+        if (!search) {
+            fetchList();
+        }
+
+    }, [offset, search]);
+
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading) {
+            if (!search && window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading) {
                 setOffset(prev => prev + 20);
             }
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [loading]);
+    }, [loading, search]);
+
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -64,23 +84,71 @@ export const Card = () => {
         fetchDetails();
     }, [poke]);
 
+
+    useEffect(() => {
+        const fetchSearch = async () => {
+            if (!search) {
+                setSearchResult(null);
+                return;
+            }
+
+            try {
+                setLoading(true);
+
+                const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`);
+
+                setSearchResult(res.data);
+
+            } catch (err) {
+                console.error("Pokémon não encontrado");
+                setSearchResult(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSearch();
+    }, [search]);
+
+    useEffect(() => {
+        const fetchGeneration = async () => {
+            if (!generationFilter) {
+                setGenerationIds([]);
+                return;
+            }
+
+            try {
+                const res = await axios.get(`https://pokeapi.co/api/v2/generation/${generationFilter}`);
+
+                const ids = res.data.pokemon_species.map(p => {
+                    const parts = p.url.split("/");
+                    return Number(parts[parts.length - 2]);
+                });
+
+                setGenerationIds(ids);
+
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchGeneration();
+    }, [generationFilter]);
+
+
     return (<>
-        {dataPoke.map(pokemon => (<div className="card-character" key={pokemon.id}>
+        {pokemonsToShow.map(pokemon => (<div className="card-character" key={pokemon.id}>
             <img
-                src={
-                    pokemon.sprites?.other?.['official-artwork']?.front_default ||
-                    pokemon.sprites?.front_default
-                }
+                src={pokemon.sprites?.other?.['official-artwork']?.front_default || pokemon.sprites?.front_default}
                 alt={pokemon.name}
             />
             <h3>{pokemon.name}</h3>
-            <p>
-                #{String(pokemon.id).padStart(3, '0')}
-            </p>
+            <p>#{String(pokemon.id).padStart(3, '0')}</p>
             <p>
                 Type: {pokemon.types.map(t => t.type.name).join(', ')}
             </p>
         </div>))}
+
         {loading && <p>Carregando...</p>}
     </>)
 }
