@@ -9,8 +9,45 @@ export const Card = ({search}) => {
     const [searchResult, setSearchResult] = useState(null);
     const [offset, setOffset] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [typeIcons, setTypeIcons] = useState({});
 
     let pokemonsToShow = search ? (searchResult ? [searchResult] : []) : dataPoke;
+
+    useEffect(() => {
+        const fetchTypeIcons = async () => {
+            try {
+                const uniqueTypes = new Set();
+
+                dataPoke.forEach(p => {
+                    p.types.forEach(t => uniqueTypes.add(t.type.name));
+                });
+
+                const typesToFetch = [...uniqueTypes].filter(t => !typeIcons[t]);
+
+                if (typesToFetch.length === 0) return;
+
+                const responses = await Promise.all(typesToFetch.map(type => axios.get(`https://pokeapi.co/api/v2/type/${type}`)));
+
+                const newIcons = {};
+
+                responses.forEach(res => {
+                    const typeName = res.data.name;
+                    const icon = res.data.sprites?.["generation-viii"]?.["sword-shield"]?.name_icon;
+
+                    newIcons[typeName] = icon;
+                });
+
+                setTypeIcons(prev => ({...prev, ...newIcons}));
+
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        if (dataPoke.length > 0) {
+            fetchTypeIcons();
+        }
+    }, [dataPoke]);
 
     useEffect(() => {
         const fetchList = async () => {
@@ -108,9 +145,13 @@ export const Card = ({search}) => {
             />
             <h3>{pokemon.name}</h3>
             <p>#{String(pokemon.id).padStart(3, '0')}</p>
-            <p>
-                Type: {pokemon.types.map(t => t.type.name).join(', ')}
-            </p>
+            <div className="types">
+                {pokemon.types.map(t => (<img
+                        key={t.type.name}
+                        src={typeIcons[t.type.name]}
+                        alt={t.type.name}
+                    />))}
+            </div>
         </div>))}
 
         {loading && <p>Carregando...</p>}

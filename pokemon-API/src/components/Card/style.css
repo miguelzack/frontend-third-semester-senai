@@ -47,6 +47,16 @@
         }
     }
 
+
+    .types {
+        display: flex;
+        gap: 6px;
+
+        img {
+            width: 117px;
+        }
+    }
+
 }
 
 .card-character:hover {
