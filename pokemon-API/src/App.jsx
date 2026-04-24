@@ -56,6 +56,7 @@ function App() {
                         Buscar
                     </button>
                 </div>
+
                 <p>Para retornar ao modo de lista, deixe o input vazio e aperte "Buscar".</p>
                 <div className="wrapper-cards">
 
