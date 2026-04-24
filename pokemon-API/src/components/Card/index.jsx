@@ -14,40 +14,31 @@ export const Card = ({search}) => {
     let pokemonsToShow = search ? (searchResult ? [searchResult] : []) : dataPoke;
 
     useEffect(() => {
-        const fetchTypeIcons = async () => {
+        const fetchAllTypeIcons = async () => {
             try {
-                const uniqueTypes = new Set();
+                const res = await axios.get('https://pokeapi.co/api/v2/type');
 
-                dataPoke.forEach(p => {
-                    p.types.forEach(t => uniqueTypes.add(t.type.name));
-                });
+                const responses = await Promise.all(
+                    res.data.results.map(t => axios.get(t.url))
+                );
 
-                const typesToFetch = [...uniqueTypes].filter(t => !typeIcons[t]);
-
-                if (typesToFetch.length === 0) return;
-
-                const responses = await Promise.all(typesToFetch.map(type => axios.get(`https://pokeapi.co/api/v2/type/${type}`)));
-
-                const newIcons = {};
+                const icons = {};
 
                 responses.forEach(res => {
                     const typeName = res.data.name;
                     const icon = res.data.sprites?.["generation-viii"]?.["sword-shield"]?.name_icon;
-
-                    newIcons[typeName] = icon;
+                    icons[typeName] = icon;
                 });
 
-                setTypeIcons(prev => ({...prev, ...newIcons}));
+                setTypeIcons(icons);
 
             } catch (err) {
                 console.error(err);
             }
         };
 
-        if (dataPoke.length > 0) {
-            fetchTypeIcons();
-        }
-    }, [dataPoke]);
+        fetchAllTypeIcons();
+    }, []);
 
     useEffect(() => {
         const fetchList = async () => {
