@@ -67,7 +67,6 @@ function App() {
                             if (value.length > 0) {
                                 const filtered = allPokemon
                                     .filter(poke => poke.name.toLowerCase().includes(value.toLowerCase()))
-                                    .slice(0, 10);
 
                                 setSuggestions(filtered);
                             } else {
