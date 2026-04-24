@@ -4,15 +4,27 @@ import LogoGitHub from "./assets/icons/logoGitHub.jsx";
 import AshMain from "./assets/images/ash-image-main.png"
 import LogoPokemon from "./assets/images/pokedex-font.png"
 import {Card} from "./components/Card/index.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 function App() {
     const [search, setSearch] = useState("");
     const [searchTrigger, setSearchTrigger] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+    const [allPokemon, setAllPokemon] = useState([]);
 
     const handleSearch = () => {
         setSearchTrigger(search);
     };
+
+    useEffect(() => {
+        const fetchPokemon = async () => {
+            const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=1025");
+            setAllPokemon(response.data.results);
+        };
+
+        fetchPokemon();
+    }, []);
 
     return (<>
         <header>
@@ -48,10 +60,33 @@ function App() {
                         type="text"
                         className="poke-search"
                         value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setSearch(value);
+
+                            if (value.length > 0) {
+                                const filtered = allPokemon
+                                    .filter(poke => poke.name.toLowerCase().includes(value.toLowerCase()))
+                                    .slice(0, 10);
+
+                                setSuggestions(filtered);
+                            } else {
+                                setSuggestions([]);
+                            }
+                        }}
                         placeholder="Digite o nome ou número do Pokémon na Pokedéx."
                     />
-
+                    {suggestions.length > 0 && (<ul className="suggestions-list">
+                        {suggestions.map((poke, index) => (<li
+                            key={index}
+                            onClick={() => {
+                                setSearch(poke.name);
+                                setSuggestions([]);
+                            }}
+                        >
+                            {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
+                        </li>))}
+                    </ul>)}
                     <button className="button-search" onClick={handleSearch}>
                         Buscar
                     </button>
