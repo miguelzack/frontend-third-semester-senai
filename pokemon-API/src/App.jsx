@@ -125,7 +125,7 @@ function App() {
                                     .toLowerCase()
                                     .includes(value.toLowerCase()));
 
-                                setSuggestions(filtered.slice(0, 10));
+                                setSuggestions(filtered);
                             } else {
                                 setSuggestions([]);
                             }
