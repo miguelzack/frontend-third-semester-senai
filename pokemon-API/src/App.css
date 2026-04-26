@@ -189,7 +189,7 @@ main {
 .filter-buttons {
     display: flex;
     gap: 16px;
-    margin-top: 20px;
+    width: 70%;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -222,4 +222,164 @@ main {
 
 .filter-button:active {
     transform: scale(0.95);
+}
+
+
+@media (max-width: 1100px) {
+    main {
+        .content-main {
+            width: 100%;
+            gap: 60px;
+
+            .ash-image {
+                width: 40%;
+            }
+
+            aside {
+                width: 40%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+
+        }
+    }
+}
+
+@media (max-width: 940px) {
+
+    main {
+        .content-main {
+            .ash-image {
+                display: none;
+            }
+
+            aside {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 60%;
+
+                img {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    main {
+        .content-main {
+            aside {
+                img {
+                    width: 100%;
+                }
+
+                .button-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+
+    header {
+        padding: 10px 20px;
+        justify-content: center;
+
+        .header-wrapper a span {
+            font-size: 16px;
+        }
+    }
+
+    main {
+        padding: 40px 16px;
+
+        .content-main {
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+
+            .ash-image {
+                display: none;
+            }
+
+            aside {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+
+                h1 {
+                    font-size: 26px;
+                }
+
+                p {
+                    font-size: 16px;
+                }
+
+                img {
+                    width: 80%;
+                }
+
+                .button-wrapper {
+                    flex-direction: column;
+                    width: 100%;
+
+                    a {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-character {
+        padding: 40px 16px;
+
+        .content-section-cards {
+            gap: 30px;
+
+            h2 {
+                font-size: 26px;
+                text-align: center;
+            }
+        }
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        max-width: 100%;
+
+        .poke-search {
+            width: 100%;
+        }
+
+        .button-search {
+            width: 100%;
+        }
+    }
+
+    .suggestions-list {
+        width: 100%;
+        top: 105%;
+    }
+
+    .filter-buttons {
+        width: 100%;
+        gap: 10px;
+
+        .filter-button {
+            flex: 1;
+            padding: 10px;
+            font-size: 13px;
+        }
+    }
 }

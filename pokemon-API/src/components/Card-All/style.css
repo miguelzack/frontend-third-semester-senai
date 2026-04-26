@@ -75,3 +75,48 @@
     transform: scale(1.1);
     box-shadow: 0px 10px 30px #ff0000;
 }
+
+@media (max-width: 480px) {
+
+    .wrapper-cards {
+        gap: 16px;
+        padding: 0 10px;
+    }
+
+    .wrapper-cards .card-character {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        padding: 16px;
+        border: 6px solid black;
+        border-radius: 16px;
+    }
+
+    .wrapper-cards .card-character img {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .wrapper-cards .card-character h3 {
+        font-size: 16px;
+    }
+
+    .wrapper-cards .card-character p {
+        font-size: 14px;
+    }
+
+    .wrapper-cards .card-character .types {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .wrapper-cards .card-character .types img {
+        width: 70px;
+    }
+
+    .card-character:hover {
+        transform: none;
+        box-shadow: 0px 6px 16px #ff0000;
+    }
+}

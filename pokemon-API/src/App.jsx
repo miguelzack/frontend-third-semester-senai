@@ -74,7 +74,7 @@ function App() {
 
         <main>
             <div className="content-main">
-                <img src={AshMain} alt="Ash"/>
+                <img src={AshMain} className="ash-image" alt="Ash"/>
 
                 <aside>
                     <img src={LogoPokemon} alt="Logo Pokémon"/>
