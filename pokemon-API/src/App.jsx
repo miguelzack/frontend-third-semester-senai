@@ -4,16 +4,19 @@ import LogoGitHub from "./assets/icons/logoGitHub.jsx";
 import AshMain from "./assets/images/ash-image-main.png";
 import LogoPokemon from "./assets/images/pokedex-font.png";
 import {CardAll} from "./components/Card-All/index.jsx";
+import {CardGen} from "./components/Card-Gen/index.jsx";
+
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {CardGen1} from "./components/Card-Gen1/index.jsx";
 
 function App() {
     const [search, setSearch] = useState("");
     const [searchTrigger, setSearchTrigger] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [allPokemon, setAllPokemon] = useState([]);
+
     const [mode, setMode] = useState("all");
+    const [generation, setGeneration] = useState(1);
 
     const handleSearch = () => {
         setSearchTrigger(search);
@@ -21,8 +24,12 @@ function App() {
 
     useEffect(() => {
         const fetchPokemon = async () => {
-            const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=1025");
-            setAllPokemon(response.data.results);
+            try {
+                const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=1025");
+                setAllPokemon(response.data.results);
+            } catch (err) {
+                console.error(err);
+            }
         };
 
         fetchPokemon();
@@ -49,8 +56,16 @@ function App() {
                     <p>Aqui você encontra informações sobre os pokémon.</p>
 
                     <div className="button-wrapper">
-                        <a href="#section-pokemon" className="btn-primary">Veja agora</a>
-                        <a href="https://pokeapi.co/" className="btn-secondary">Saiba mais</a>
+                        <a href="#section-pokemon" className="btn-primary">
+                            Veja agora
+                        </a>
+                        <a
+                            href="https://pokeapi.co/"
+                            className="btn-secondary"
+                            target="_blank"
+                        >
+                            Saiba mais
+                        </a>
                     </div>
                 </aside>
             </div>
@@ -62,6 +77,7 @@ function App() {
                     Veja os <span>Pokémon</span>
                 </h2>
 
+                {/* 🔎 BUSCA */}
                 <div className="search-wrapper">
                     <input
                         type="text"
@@ -72,8 +88,10 @@ function App() {
                             setSearch(value);
 
                             if (value.length > 0) {
-                                const filtered = allPokemon.filter(poke => poke.name.toLowerCase().includes(value.toLowerCase()));
-                                setSuggestions(filtered);
+                                const filtered = allPokemon.filter((poke) => poke.name
+                                    .toLowerCase()
+                                    .includes(value.toLowerCase()));
+                                setSuggestions(filtered.slice(0, 10)); // limita sugestões
                             } else {
                                 setSuggestions([]);
                             }
@@ -93,11 +111,15 @@ function App() {
                         </li>))}
                     </ul>)}
 
-                    <button className="button-search" onClick={handleSearch}>
+                    <button
+                        className="button-search"
+                        onClick={handleSearch}
+                    >
                         Buscar
                     </button>
                 </div>
 
+                {/* 🎮 FILTROS */}
                 <div className="filter-buttons">
                     <button
                         className={`filter-button ${mode === "all" ? "active" : ""}`}
@@ -106,18 +128,27 @@ function App() {
                         Pokédex Geral
                     </button>
 
-                    <button
-                        className={`filter-button ${mode === "gen1" ? "active" : ""}`}
-                        onClick={() => setMode("gen1")}
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((gen) => (<button
+                        key={gen}
+                        className={`filter-button ${mode === gen ? "active" : ""}`}
+                        onClick={() => {
+                            setMode(gen);
+                            setGeneration(gen);
+                        }}
                     >
-                        Gen 1
-                    </button>
+                        Gen {gen}
+                    </button>))}
                 </div>
 
                 <p>Para voltar à lista, deixe vazio e clique em buscar.</p>
 
-                {mode === "all" && <CardAll search={searchTrigger}/>}
-                {mode === "gen1" && <CardGen1 search={searchTrigger}/>}
+                {/* 🧠 RENDER */}
+                {mode === "all" && (<CardAll search={searchTrigger}/>)}
+
+                {mode !== "all" && (<CardGen
+                    search={searchTrigger}
+                    generation={generation}
+                />)}
             </div>
         </section>
     </>);
