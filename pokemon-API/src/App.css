@@ -288,6 +288,118 @@ main {
     }
 }
 
+@media (max-width: 550px) {
+
+    header {
+        padding: 10px 16px;
+        justify-content: center;
+    }
+
+    .header-wrapper a span {
+        font-size: 16px;
+    }
+
+    main {
+        padding: 50px 16px;
+    }
+
+    main .content-main {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+    }
+
+    .ash-image {
+        display: none;
+    }
+
+    main .content-main aside {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    main .content-main aside img {
+        width: 80%;
+    }
+
+    main .content-main aside h1 {
+        font-size: 24px;
+    }
+
+    main .content-main aside p {
+        font-size: 15px;
+    }
+
+    .button-wrapper {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .button-wrapper a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section-character {
+        padding: 40px 16px;
+    }
+
+    .content-section-cards {
+        width: 100%;
+        padding: 0 10px;
+        gap: 24px;
+    }
+
+    .content-section-cards h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .section-character p {
+        text-align: center;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .poke-search {
+        width: 100%;
+    }
+
+    .button-search {
+        width: 100%;
+    }
+
+    .suggestions-list {
+        width: 100%;
+        top: 105%;
+    }
+
+    .filter-buttons {
+        width: 100%;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .filter-button {
+        flex: 1;
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
 @media (max-width: 480px) {
 
     header {
