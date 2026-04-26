@@ -2,7 +2,7 @@ import axios from 'axios'
 import './style.css'
 import {useEffect, useState} from "react";
 
-export const Card = ({search}) => {
+export const CardAll = ({search}) => {
 
     const [poke, setPoke] = useState([]);
     const [dataPoke, setDataPoke] = useState([]);
@@ -18,9 +18,7 @@ export const Card = ({search}) => {
             try {
                 const res = await axios.get('https://pokeapi.co/api/v2/type');
 
-                const responses = await Promise.all(
-                    res.data.results.map(t => axios.get(t.url))
-                );
+                const responses = await Promise.all(res.data.results.map(t => axios.get(t.url)));
 
                 const icons = {};
 
@@ -117,7 +115,7 @@ export const Card = ({search}) => {
                 setSearchResult(res.data);
 
             } catch (err) {
-                console.error("Pokémon não encontrado");
+                console.error("Pokémon não encontrado " + err);
                 setSearchResult(null);
             } finally {
                 setLoading(false);
@@ -128,7 +126,7 @@ export const Card = ({search}) => {
     }, [search]);
 
 
-    return (<>
+    return (<div className="wrapper-cards">
         {pokemonsToShow.map(pokemon => (<div className="card-character" key={pokemon.id}>
             <img
                 src={pokemon.sprites?.other?.['official-artwork']?.front_default || pokemon.sprites?.front_default}
@@ -138,13 +136,13 @@ export const Card = ({search}) => {
             <p>#{String(pokemon.id).padStart(3, '0')}</p>
             <div className="types">
                 {pokemon.types.map(t => (<img
-                        key={t.type.name}
-                        src={typeIcons[t.type.name]}
-                        alt={t.type.name}
-                    />))}
+                    key={t.type.name}
+                    src={typeIcons[t.type.name]}
+                    alt={t.type.name}
+                />))}
             </div>
         </div>))}
 
         {loading && <p>Carregando...</p>}
-    </>)
+    </div>)
 }

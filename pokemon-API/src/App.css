@@ -82,6 +82,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #A20000;
 
     .content-section-cards {
         display: flex;
@@ -101,16 +102,7 @@ main {
             }
         }
 
-        .wrapper-cards {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 36px;
-            justify-content: center;
-            align-items: center;
-            max-width: 1800px;
-        }
+
     }
 }
 
@@ -194,4 +186,12 @@ main {
     border-bottom: 1px solid #eee;
 }
 
+.filter-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
 
+.filter-buttons button.active {
+    outline: 3px solid #FFDE00;
+}
