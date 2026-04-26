@@ -49,14 +49,14 @@ function App() {
                     <p>Aqui você encontra informações sobre os pokémon.</p>
 
                     <div className="button-wrapper">
-                        <a href="#" className="btn-primary">Veja agora</a>
-                        <a href="#" className="btn-secondary">Saiba mais</a>
+                        <a href="#section-pokemon" className="btn-primary">Veja agora</a>
+                        <a href="https://pokeapi.co/" className="btn-secondary">Saiba mais</a>
                     </div>
                 </aside>
             </div>
         </main>
 
-        <section className="section-character">
+        <section className="section-character" id="section-pokemon">
             <div className="content-section-cards">
                 <h2>
                     Veja os <span>Pokémon</span>
@@ -100,14 +100,14 @@ function App() {
 
                 <div className="filter-buttons">
                     <button
-                        className={`btn-primary ${mode === "all" ? "active" : ""}`}
+                        className={`filter-button ${mode === "all" ? "active" : ""}`}
                         onClick={() => setMode("all")}
                     >
                         Pokédex Geral
                     </button>
 
                     <button
-                        className={`btn-secondary ${mode === "gen1" ? "active" : ""}`}
+                        className={`filter-button ${mode === "gen1" ? "active" : ""}`}
                         onClick={() => setMode("gen1")}
                     >
                         Gen 1

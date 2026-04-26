@@ -188,10 +188,36 @@ main {
 
 .filter-buttons {
     display: flex;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 16px;
+    margin-top: 20px;
 }
 
-.filter-buttons button.active {
-    outline: 3px solid #FFDE00;
+.filter-button {
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background: #1a0000;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+}
+
+.filter-button:hover {
+    background: #ff0000;
+    transform: translateY(-2px);
+}
+
+
+.filter-button.active {
+    background: linear-gradient(135deg, #ff0000, #ff3b3b);
+    border: 2px solid #fff;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
+}
+
+
+.filter-button:active {
+    transform: scale(0.95);
 }
