@@ -2,8 +2,7 @@ import * as React from "react"
 
 const LogoRickAndMorty = (props) => (<svg
     xmlns="http://www.w3.org/2000/svg"
-    width={430}
-    height={126}
+    viewBox="0 0 430 126"
     fill="none"
     {...props}
 >
