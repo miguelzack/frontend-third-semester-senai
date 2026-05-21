@@ -1,8 +1,8 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Home} from "./pages/Home.jsx";
-import {Sobre} from "./pages/Sobre.jsx";
-import {Contato} from "./pages/Contato.jsx";
-import {Page404} from "./pages/Page404.jsx";
+import {Home} from "./pages/Home/Home.jsx";
+import {Sobre} from "./pages/Sobre/Sobre.jsx";
+import {Contato} from "./pages/Contato/Contato.jsx";
+import {Page404} from "./pages/Page404/Page404.jsx";
 
 function App() {
     return (<BrowserRouter>
