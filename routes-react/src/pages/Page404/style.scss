@@ -1,4 +1,60 @@
 .page404 {
   min-height: 100vh;
-  background-color: black;
+  background-image: url("/public/404-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: "Exo", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    img {
+      position: relative;
+      left: 14.5%;
+      width: 100%;
+    }
+
+    .error-link-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+
+      .text-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        h1 {
+          font-weight: 500;
+          font-size: 50px;
+        }
+
+        h2 {
+          font-weight: 300;
+          font-size: 30px;
+        }
+      }
+
+      a {
+        font-size: 20px;
+        font-weight: 300;
+        padding: 4px 25px;
+        border: 0.5px solid white;
+        border-radius: 5px;
+        width: fit-content;
+        text-align: center;
+      }
+    }
+  }
 }
