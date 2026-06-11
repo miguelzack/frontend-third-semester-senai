@@ -6,7 +6,7 @@ function App() {
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
-
+    const [usuario, setUsuario] = useState(null)
 
     const login = async () => {
         try {
@@ -18,10 +18,21 @@ function App() {
 
             localStorage.setItem("token", token)
             alert("Login realizado")
-        }
-        catch {
+        } catch {
             alert("Login inválido")
         }
+    }
+
+    const buscar = async () => {
+        const token = localStorage.getItem("token")
+        const resposta = await axios.get("http://localhost:3000/perfil", {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        setUsuario(resposta.data.usuario)
+        console.log(usuario)
     }
 
     return (<>
@@ -30,6 +41,7 @@ function App() {
         <input type="password" placeholder="Informe sua senha" value={senha}
                onChange={(e) => setSenha(e.target.value)}/>
         <button onClick={login}>Entrar</button>
+        <button onClick={buscar}>Buscar</button>
     </>)
 }
 
