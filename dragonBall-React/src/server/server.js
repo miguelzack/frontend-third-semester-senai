@@ -6,6 +6,7 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
+
 const SECRET = "segredo-super-secreto";
 
 app.post("/login", (req, res) => {
